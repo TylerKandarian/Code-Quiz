@@ -165,3 +165,24 @@ li:nth-child(odd) {
 li {
   font-size: 4.0vw;
 }
+
+@media screen and (max-width: 1024px) {
+
+  .btn {
+      width: 100%;
+      font-size: 3.0vw;
+  }
+
+  #question {
+      font-size: 4.5vw;
+  }
+
+  h1 {
+      font-size: 4.5vw;
+  }
+
+  p {
+      font-size: 3.0vw;
+  }
+
+}
