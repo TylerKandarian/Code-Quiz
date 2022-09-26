@@ -80,22 +80,22 @@
       background: var(--secondary);
       color: var(--white);
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 0px;
       border: none;
-      box-shadow: 0 3px grey;
+      box-shadow: 0 3px #d05fec;
   }
 
   .btn:hover {
       background: var(--tertiary);
       border-radius: 10px;
-      box-shadow: 0 2px grey;
+      box-shadow: 0 2px #d05fec;
       cursor: pointer;
   }
 
   .btn:active {
       border: none;
       outline: none;
-      box-shadow: 0 0 grey;
+      box-shadow: 0 0 #d05fec;
   }
 
   .btn:focus {
