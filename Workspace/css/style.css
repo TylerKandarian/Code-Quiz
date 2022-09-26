@@ -87,7 +87,7 @@
 
   .btn:hover {
       background: var(--tertiary);
-      border-radius: 10px;
+      border-radius: 0px;
       box-shadow: 0 2px #d05fec;
       cursor: pointer;
   }
