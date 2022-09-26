@@ -1,3 +1,18 @@
+var containerQuestionEl = document.getElementById("question-container");
+      var containerStartEl = document.getElementById("starter-container");
+      var containerEndEl = document.getElementById("end-container")
+      var containerScoreEl = document.getElementById("score-banner")
+      var formInitials = document.getElementById("initials-form")
+      var containerHighScoresEl = document.getElementById("high-score-container")
+      var ViewHighScoreEl = document.getElementById("view-high-scores")
+      var listHighScoreEl = document.getElementById("high-score-list")
+      var btnStartEl = document.querySelector("#start-game");
+      var btnGoBackEl = document.querySelector("#go-back")
+      var btnClearScoresEl = document.querySelector("#clear-high-scores")
+      var questionEl = document.getElementById("question")
+      var answerbuttonsEl = document.getElementById("answer-buttons")
+
+
 // The array of questions for our quiz game.
 var questions = [
     { q: 'Who has the most championships in F1 history?', 
