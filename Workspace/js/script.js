@@ -47,7 +47,7 @@ var questions = [
   },
   {
     q: 'Who does Lewis Hamilton drive for?',
-    a: 'Both b and c',
+    a: 'Mercedes',
     choices: [{ choice: 'Mercedes' }, { choice: 'Mclaren' }, { choice: 'Redbull' }, { choice: 'Ferrari' }]
   },
 ];
