@@ -72,6 +72,60 @@ var renderStartPage = function () {
   }
 }
 
+var setTime = function () {
+  timeleft = 50;
+
+var timercheck = setInterval(function() {
+  timerEl.innerText = timeleft;
+  timeleft--
+
+  if (gameover) {
+      clearInterval(timercheck)
+  }
+ 
+  if (timeleft < 0) {
+      showScore()
+      timerEl.innerText = 0
+      clearInterval(timercheck)
+  }
+
+  }, 1000)
+}
+
+var startGame = function() {
+  containerStartEl.classList.add('hide');
+  containerStartEl.classList.remove('show');
+  containerQuestionEl.classList.remove('hide');
+  containerQuestionEl.classList.add('show');
+  //Shuffle the questions so they show in random order
+  arrayShuffledQuestions = questions.sort(() => Math.random() - 0.5)
+  setTime()
+  setQuestion()
+}
+
+var setQuestion = function() {
+  resetAnswers()
+  displayQuestion(arrayShuffledQuestions[QuestionIndex])
+}
+
+var resetAnswers = function() {
+  while (answerbuttonsEl.firstChild) {
+      answerbuttonsEl.removeChild(answerbuttonsEl.firstChild)
+  };
+};
+
+var displayQuestion = function(index) {
+  questionEl.innerText = index.q
+  for (var i = 0; i < index.choices.length; i++) {
+      var answerbutton = document.createElement('button')
+      answerbutton.innerText = index.choices[i].choice
+      answerbutton.classList.add('btn')
+      answerbutton.classList.add('answerbtn')
+      answerbutton.addEventListener("click", answerCheck)
+      answerbuttonsEl.appendChild(answerbutton)
+      }
+  };
+
 var answerCorrect = function () {
   if (correctEl.className = "hide") {
     correctEl.classList.remove("hide")
@@ -80,24 +134,27 @@ var answerCorrect = function () {
     wrongEl.classList.add("hide")
   }
 }
-var answerWrong = function () {
+var answerWrong = function() {
   if (wrongEl.className = "hide") {
-    wrongEl.classList.remove("hide")
-    var selectedanswer = event.target
-    if (arrayShuffledQuestions[QuestionIndex].a === selectedanswer.innerText) {
-      answerCorrect()
-      score = score + 20
-    }
-
-    else {
-      answerWrong()
-      score = score - 20;
-      timeleft = timeleft - 5;
-    };
-
-    scoreDisplay.innerText = ("Your final score is " + score + "!");
-    containerScoreEl.appendChild(scoreDisplay);
+      wrongEl.classList.remove("hide")
+      wrongEl.classList.add("banner")
+      correctEl.classList.remove("banner")
+      correctEl.classList.add("hide")
   }
+}
+
+var answerCheck = function(event) {
+  var selectedanswer = event.target
+      if (arrayShuffledQuestions[QuestionIndex].a === selectedanswer.innerText){
+          answerCorrect()
+          score = score + 20
+      }
+
+      else {
+        answerWrong()
+        score = score - 20;
+        timeleft = timeleft - 5;
+    };
 
   var createHighScore = function (event) {
     event.preventDefault()
