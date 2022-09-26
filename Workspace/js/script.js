@@ -6,6 +6,8 @@ var formInitials = document.getElementById("initials-form")
 var containerHighScoresEl = document.getElementById("high-score-container")
 var ViewHighScoreEl = document.getElementById("view-high-scores")
 var listHighScoreEl = document.getElementById("high-score-list")
+var correctEl = document.getElementById("correct")
+var wrongEl = document.getElementById("wrong")
 var btnStartEl = document.querySelector("#start-game");
 var btnGoBackEl = document.querySelector("#go-back")
 var btnClearScoresEl = document.querySelector("#clear-high-scores")
@@ -16,7 +18,6 @@ var score = 0;
 var timeleft;
 var gameover
 timerEl.innerText = 0;
-
 var HighScores = [];
 
 var arrayShuffledQuestions
@@ -30,24 +31,24 @@ var questions = [
     choices: [{ choice: 'Nikita Mazepin' }, { choice: 'Lewis Hamilton' }, { choice: 'Michael Schumacher' }, { choice: 'Both b and c' }]
   },
   {
-    q: 'Who has the most championships in F1 history?',
-    a: 'Both b and c',
-    choices: [{ choice: 'Nikita Mazepin' }, { choice: 'Lewis Hamilton' }, { choice: 'Michael Schumacher' }, { choice: 'Both b and c' }]
+    q: 'Who won the constructors championship in 2021?',
+    a: 'Mercedes',
+    choices: [{ choice: 'Redbull' }, { choice: 'Mercedes' }, { choice: 'Ferrari' }, { choice: 'Mclaren' }]
   },
   {
-    q: 'Who has the most championships in F1 history?',
-    a: 'Both b and c',
-    choices: [{ choice: 'Nikita Mazepin' }, { choice: 'Lewis Hamilton' }, { choice: 'Michael Schumacher' }, { choice: 'Both b and c' }]
+    q: 'how fast does an f1 car go?',
+    a: '200+ MPH',
+    choices: [{ choice: '80 MPH' }, { choice: '150 MPH' }, { choice: '200+ MPH' }, { choice: '120 MPH' }]
   },
   {
-    q: 'Who has the most championships in F1 history?',
-    a: 'Both b and c',
-    choices: [{ choice: 'Nikita Mazepin' }, { choice: 'Lewis Hamilton' }, { choice: 'Michael Schumacher' }, { choice: 'Both b and c' }]
+    q: 'What color is the Ferrari car??',
+    a: 'Red',
+    choices: [{ choice: 'Black' }, { choice: 'Yellow' }, { choice: 'Red' }, { choice: 'Silver' }]
   },
   {
-    q: 'Who has the most championships in F1 history?',
+    q: 'Who does Lewis Hamilton drive for?',
     a: 'Both b and c',
-    choices: [{ choice: 'Nikita Mazepin' }, { choice: 'Lewis Hamilton' }, { choice: 'Michael Schumacher' }, { choice: 'Both b and c' }]
+    choices: [{ choice: 'Mercedes' }, { choice: 'Mclaren' }, { choice: 'Redbull' }, { choice: 'Ferrari' }]
   },
 ];
 
@@ -75,56 +76,55 @@ var renderStartPage = function () {
 var setTime = function () {
   timeleft = 50;
 
-var timercheck = setInterval(function() {
-  timerEl.innerText = timeleft;
-  timeleft--
+  var timercheck = setInterval(function () {
+    timerEl.innerText = timeleft;
+    timeleft--
 
-  if (gameover) {
+    if (gameover) {
       clearInterval(timercheck)
-  }
- 
-  if (timeleft < 0) {
+    }
+
+    if (timeleft < 0) {
       showScore()
       timerEl.innerText = 0
       clearInterval(timercheck)
-  }
+    }
 
   }, 1000)
 }
 
-var startGame = function() {
+var startGame = function () {
   containerStartEl.classList.add('hide');
   containerStartEl.classList.remove('show');
   containerQuestionEl.classList.remove('hide');
   containerQuestionEl.classList.add('show');
-  //Shuffle the questions so they show in random order
   arrayShuffledQuestions = questions.sort(() => Math.random() - 0.5)
   setTime()
   setQuestion()
 }
 
-var setQuestion = function() {
+var setQuestion = function () {
   resetAnswers()
   displayQuestion(arrayShuffledQuestions[QuestionIndex])
 }
 
-var resetAnswers = function() {
+var resetAnswers = function () {
   while (answerbuttonsEl.firstChild) {
-      answerbuttonsEl.removeChild(answerbuttonsEl.firstChild)
+    answerbuttonsEl.removeChild(answerbuttonsEl.firstChild)
   };
 };
 
-var displayQuestion = function(index) {
+var displayQuestion = function (index) {
   questionEl.innerText = index.q
   for (var i = 0; i < index.choices.length; i++) {
-      var answerbutton = document.createElement('button')
-      answerbutton.innerText = index.choices[i].choice
-      answerbutton.classList.add('btn')
-      answerbutton.classList.add('answerbtn')
-      answerbutton.addEventListener("click", answerCheck)
-      answerbuttonsEl.appendChild(answerbutton)
-      }
-  };
+    var answerbutton = document.createElement('button')
+    answerbutton.innerText = index.choices[i].choice
+    answerbutton.classList.add('btn')
+    answerbutton.classList.add('answerbtn')
+    answerbutton.addEventListener("click", answerCheck)
+    answerbuttonsEl.appendChild(answerbutton)
+  }
+};
 
 var answerCorrect = function () {
   if (correctEl.className = "hide") {
@@ -134,31 +134,53 @@ var answerCorrect = function () {
     wrongEl.classList.add("hide")
   }
 }
-var answerWrong = function() {
+var answerWrong = function () {
   if (wrongEl.className = "hide") {
-      wrongEl.classList.remove("hide")
-      wrongEl.classList.add("banner")
-      correctEl.classList.remove("banner")
-      correctEl.classList.add("hide")
+    wrongEl.classList.remove("hide")
+    wrongEl.classList.add("banner")
+    correctEl.classList.remove("banner")
+    correctEl.classList.add("hide")
   }
 }
 
-var answerCheck = function(event) {
+var answerCheck = function (event) {
   var selectedanswer = event.target
-      if (arrayShuffledQuestions[QuestionIndex].a === selectedanswer.innerText){
-          answerCorrect()
-          score = score + 20
-      }
+  if (arrayShuffledQuestions[QuestionIndex].a === selectedanswer.innerText) {
+    answerCorrect()
+    score = score + 20
+  }
 
-      else {
-        answerWrong()
-        score = score - 20;
-        timeleft = timeleft - 5;
-    };
+  else {
+    answerWrong()
+    score = score - 20;
+    timeleft = timeleft - 5;
+  };
 
-  var createHighScore = function (event) {
-    event.preventDefault()
-    var initials = document.querySelector("#initials").value;
+  QuestionIndex++
+  if (arrayShuffledQuestions.length > QuestionIndex + 1) {
+    setQuestion()
+  }
+  else {
+    gameover = "true";
+    showScore();
+  }
+}
+
+var showScore = function () {
+  containerQuestionEl.classList.add("hide");
+  containerEndEl.classList.remove("hide");
+  containerEndEl.classList.add("show");
+
+  var scoreDisplay = document.createElement("p");
+  scoreDisplay.innerText = ("Your final score is " + score + "!");
+  containerScoreEl.appendChild(scoreDisplay);
+}
+
+var createHighScore = function (event) {
+  event.preventDefault()
+  var initials = document.querySelector("#initials").value;
+  if (!initials) {
+    alert("Enter your intials!");
     return;
   }
 
