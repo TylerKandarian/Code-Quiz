@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Code Quiz</title>
+    <title>F1 Quiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Workspace/css/style.css"
-</head>
+    <link rel="stylesheet" href="./Workspace/css/style.css" </head>
+
 <body>
     <header>
-        <h4>View High Scores</h4> 
-        <h4 class="timer" id="timer">Timer: <span class=hide >0</span></h4>
+        <h4 id="view-high-scores">View High Scores</h4>
+        <h4 class="timer" id="timer">Timer: <span class=hide>0</span></h4>
     </header>
-    <div class="starter-container">
-        <h1>Formula 1 Quiz Challenge</h1>  
-        <p>To begin press start!
-        </p>
-        <button class="btn" id="start-game">Start Quiz</button>
-    </div>
-
-    <div class="question-container">
-        <div id="question">Who has the most championships in F1 history? </div>
-
-        <div id="answers-container" class="btn-grid">
-            <button class=btn id="answer-button">Nikita Mazepin</button> 
-            <button class=btn id="answer-button">Lewis Hamilton</button> 
-            <button class=btn id="answer-button">Michael Schumacher</button> 
-            <button class=btn id="answer-button">Both b and c</button> 
+    <div id="starter-container" class="show">
+        <div class="container start">
+            <h1>Formula 1 Quiz Challenge</h1>
+            <p>Press start to begin!</p>
+            <button class="btn startend" id="start-game">Start Quiz</button>
         </div>
     </div>
 
+    <div id="question-container" class="hide">
+        <div class="container questions">
+            <div id="question"></div>
+            <div id="answer-buttons" class="btn-grid"></div>
+        </div>
+    </div>
+
+    <div id="end-container" class="hide">
+        <div class="container end">
+            <div id=score-banner>
+                <h1>All done!</h1>
+            </div>
+            <input type="text" name="initials" id="initials" class="text-input" />
+            <button class="btn startend" id="sumbit-score" type="submit">Submit</button> </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="high-score-container" class="hide">
+        <div class="high-scores container">
+            <h1 class="high-score">High Scores</h1>
+            <ol id="high-score-list" class="score-list"></ol>
+            <div>
+                <button class="btn" id="go-back">Go Back</button>
+                <button class="btn" id="clear-high-scores">Clear high scores</button>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>
