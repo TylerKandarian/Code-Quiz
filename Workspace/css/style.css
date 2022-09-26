@@ -89,6 +89,7 @@
       background: var(--tertiary);
       border-radius: 10px;
       box-shadow: 0 2px grey;
+      cursor: pointer;
   }
 
   .btn:active {
