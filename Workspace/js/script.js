@@ -36,12 +36,12 @@ var questions = [
     choices: [{ choice: 'Redbull' }, { choice: 'Mercedes' }, { choice: 'Ferrari' }, { choice: 'Mclaren' }]
   },
   {
-    q: 'how fast does an f1 car go?',
+    q: 'How fast does an f1 car go?',
     a: '200+ MPH',
     choices: [{ choice: '80 MPH' }, { choice: '150 MPH' }, { choice: '200+ MPH' }, { choice: '120 MPH' }]
   },
   {
-    q: 'What color is the Ferrari car??',
+    q: 'What color is the Ferrari car?',
     a: 'Red',
     choices: [{ choice: 'Black' }, { choice: 'Yellow' }, { choice: 'Red' }, { choice: 'Silver' }]
   },
